@@ -1,0 +1,621 @@
+<!DOCTYPE html><html lang="pt"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acervo Exclusivo de E-books | 50 Títulos Especializados</title>
+    <link rel="icon" type="image/png" href="ttt.jpg">
+
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1100382905879605');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1100382905879605&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+
+    <script>
+  // ALTERE O LINK PARA A PÁGINA QUE QUISER MOSTRAR QUANDO O USUÁRIO TENTAR SAIR
+  const link = 'https://convitesdigital.github.io/Bonus-do-Dia/';
+
+  function setBackRedirect(url) {
+    let urlBackRedirect = url;
+    urlBackRedirect = urlBackRedirect =
+      urlBackRedirect.trim() +
+      (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
+      document.location.search.replace('?', '').toString();
+
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+
+    window.addEventListener('popstate', () => {
+      console.log('onpopstate', urlBackRedirect);
+      setTimeout(() => {
+        location.href = urlBackRedirect;
+      }, 1);
+    });
+  }
+
+  setBackRedirect(link);
+</script>
+
+
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --primary-hover: #27ae60;
+            --accent-red: #e74c3c;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Barra de Escassez Superior */
+        .scarcity-bar {
+            background-color: var(--accent-red);
+            color: white;
+            text-align: center;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Cabeçalho da Seção */
+        header {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+            color: var(--text-main);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Container Principal dos Cards */
+        .container {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .ebook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Estilo do Card Individual */
+        .ebook-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ebook-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        /* Badge de Desconto */
+        .discount-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: var(--accent-red);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 2;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Imagem do Ebook */
+        .ebook-image-container {
+            width: 100%;
+            height: 280px;
+            background: #eaeaea;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ebook-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .ebook-card:hover .ebook-image-container img {
+            transform: scale(1.05);
+        }
+
+        /* Informações do Ebook */
+        .ebook-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .ebook-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.4;
+            min-height: 55px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Avaliação por Estrelas */
+        .stars {
+            color: #f39c12;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* Preços */
+        .pricing {
+            margin-top: auto;
+            margin-bottom: 15px;
+        }
+
+        .old-price {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-bottom: 2px;
+        }
+
+        .current-price {
+            font-size: 1.30rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        /* Botão de Compra */
+        .buy-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 2px 6px rgba(46, 204, 113, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Seção de Badges de Confiança */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 60px auto 40px auto;
+            padding: 20px;
+            max-width: 1100px;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .trust-badges div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Seção de Depoimentos */
+        .testimonials-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .testimonials-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .testimonials-divider {
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-red);
+            margin: 0 auto 40px auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        /* Seção de Suporte e Contato */
+        .support-section {
+            max-width: 650px;
+            margin: 60px auto 80px auto;
+            padding: 0 20px;
+        }
+
+        .support-box {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .support-box h3 {
+            text-align: center;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .submit-btn:hover {
+            background-color: #1a252f;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            header {
+                padding: 25px 15px 10px 15px;
+            }
+            .container {
+                padding: 0 10px;
+            }
+            .support-box {
+                padding: 20px;
+            }
+        }
+    </style></head><body>
+
+    <!-- Barra Superior com Temporizador Regressivo -->
+    <div class="scarcity-bar" id="scarcity-timer">
+        ⚠️ ATENÇÃO: Descontos especiais expiram em: 30:00
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Acervo Exclusivo de E-books: Aprenda, Evolua e Domine Novas Habilidades</h1>
+        <p>Acesso instantâneo aos melhores e-books do mercado. Cada livro possui suporte e checkout individual seguro.</p>
+    </header>
+
+    <!-- Vitrine de E-books (50 Títulos) -->
+    <main class="container">
+        <div class="ebook-grid" id="ebookGrid">
+            <!-- Os 50 cards serão injetados dinamicamente via JavaScript -->
+        </div>
+    </main>
+
+    <!-- Selos de Confiança -->
+    <div class="trust-badges">
+        <div>🔒 Pagamento 100% Criptografado</div>
+        <div>⭐ Avaliações Verificadas</div>
+        <div>🚀 Download Imediato</div>
+        <div>🛡️ 7 Dias de Garantia</div>
+    </div>
+
+    <!-- Seção de Depoimentos Expandida -->
+    <section class="testimonials-section">
+        <h2 class="testimonials-title">O que dizem os nossos leitores</h2>
+        <div class="testimonials-divider"></div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Comprei o volume de desenvolvimento pessoal e a entrega foi imediata no meu e-mail.  ⭐⭐⭐⭐⭐"</p>
+                <div class="testimonial-author">— Amanda Rocha</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Programação Mental para o Sucesso: Reprograme Seu Subconsciente
+"Eu sofria muito com autossabotagem e crenças limitantes que me impediam de crescer profissionalmente. As técnicas de reprogramação mental descritas aqui trouxeram uma clareza mental impressionante. Recomendo a todos!"
+ ⭐⭐⭐⭐⭐"</p>
+                <div class="testimonial-author">— Ana Cláudia Silva, Beira</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Tráfego Pago e Funil de Vendas: Como Conectar Anúncios de Alta Performance a um Funil
+"Geria anúncios há meses sem ver retorno real, gastando dinheiro à toa. Este e-book abriu-me os olhos sobre a estrutura correta de um funil de conversão. As minhas vendas online triplicaram em menos de um mês!"
+⭐⭐⭐⭐⭐"</p>
+                <div class="testimonial-author">— Hélder Tembe, Nampula </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Morte e Ressurreição de Cristo: O Significado Histórico e Espiritual
+"Uma leitura profundamente edificante e rica em detalhes históricos. Aprofundou a minha fé e deu-me uma perspectiva muito mais clara sobre o sacrifício e o verdadeiro significado da Páscoa. Excelente obra."
+⭐⭐⭐⭐⭐"</p>
+                <div class="testimonial-author">— Pastor Daniel Mucavele, Matola </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Psicologia das Vendas: O Que Faz o Cérebro do Cliente Dizer 'Sim'
+"Compreender os gatilhos mentais e o comportamento de compra mudou a minha abordagem comercial. Fechei três grandes contratos esta semana utilizando exatamente as técnicas de persuasão ética ensinadas no livro."
+⭐⭐⭐⭐⭐"</p>
+                <div class="testimonial-author">— Mário Cossa, Quelimane </div>
+            </div>
+            <div class="testimonial-card">
+                <p>". O Preço do Sangue de Jesus: Compreendendo o Sacrifício que Dividiu a História
+"Um livro emocionante e teologicamente rico. Tocou o meu coração de uma maneira única e renovou o meu amor pelas Escrituras Sagradas. Leitura obrigatória para todo o cristão que deseja ir mais fundo."
+⭐⭐⭐⭐⭐"</p>
+                <div class="testimonial-author">— Maria Joaquina Langa, Chimoio </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"A Ciência da Riqueza: Hábitos Comprovados para Construir Liberdade Financeira Duradoura
+"Este livro mudou completamente a minha mentalidade em relação ao dinheiro. Consegui organizar as minhas finanças, sair das dívidas e começar a investir de forma consistente. O método dos hábitos diários é simplesmente revolucionário!"
+ ⭐⭐⭐⭐⭐"</p>
+                <div class="testimonial-author">— — Carlos Mutola, Maputo</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Oratória Poderosa: Como Falar em Público Sem Medo
+"Eu tremia só de pensar em falar para mais de cinco pessoas. As dicas de respiração, postura e estruturação de discurso deram-me a confiança necessária para apresentar o meu projeto na empresa sem nenhum pânico."
+⭐⭐⭐⭐⭐"</p>
+                <div class="testimonial-author">— Nelson Bambo, Tete</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Suporte e Dúvidas Expandida -->
+    <section class="support-section">
+        <div class="support-box">
+            <h3>Ficou com alguma dúvida?</h3>
+            <form onsubmit="enviarSuporte(event)">
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" placeholder="Ex: João Silva" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Seu Melhor E-mail:</label>
+                    <input type="email" id="email" placeholder="Ex: joao@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem ou Dúvida:</label>
+                    <textarea id="mensagem" placeholder="Digite aqui..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Enviar para o Suporte</button>
+            </form>
+        </div>
+    </section>
+
+
+    <script>
+        // Banco de dados com os 50 E-books e seus respectivos links de checkout (substitua os '#' pelos seus links reais)
+        const ebooks = [
+            { id: 1, title: "A CIÊNCIA DA RIQUEZA: Hábitos Comprovados para Construir Liberdade Financeira Duradoura ", priceOld: "300,00", priceNew: "249,00", discount: "-50% OFF", image: "59.jpeg", checkoutUrl: "https://checkout.escalepay.com/7853368" },
+            { id: 2, title: "PROGRAMAÇÃO MENTAL PARA O SUCESSO: Reprograme Seu Subconsciente  ", priceOld: "150,00", priceNew: "189,00", discount: "-30% OFF", image: "75.jpeg", checkoutUrl: "https://checkout.escalepay.com/5752805" },
+            { id: 3, title: "TRÁFEGO PAGO E FUNIL DE VENDAS: Como Conectar Anúncios de Alta Performance a um Funil que Vende Todos os Dias", priceOld: "234,00", priceNew: "194,00", discount: "-40% OFF", image: "76.jpeg", checkoutUrl: "https://checkout.escalepay.com/7944369" },
+            { id: 4, title: "MORTE E RESSURREIÇÃO DE CRISTO: O Significado Histórico e Espiritual da Morte e Ressurreição de Jesus", priceOld: "167,00", priceNew: "134,00", discount: "-20% OFF", image: "83.jpeg", checkoutUrl: "https://checkout.escalepay.com/3553659" },
+            { id: 5, title: "PSICOLOGIA DAS VENDAS: O Que Faz o Cérebro do Cliente Dizer 'Sim'", priceOld: "349,00", priceNew: "289,00", discount: "-50% OFF", image: "73.jpeg", checkoutUrl: "https://checkout.escalepay.com/9201870" },
+            { id: 6, title: "O PREÇO DO SANGUE DE JESUS: Compreendendo o Sacrifício que Dividiu a História", priceOld: "321", priceNew: "149,00", discount: "-50% OFF", image: "22.jpeg", checkoutUrl: "https://checkout.escalepay.com/2787875" },
+            { id: 7, title: "ORATÓRIA PODEROSA: Como Falar em Público Sem Medo", priceOld: "355,00", priceNew: "220,00", discount: "-54% OFF", image: "60.jpeg", checkoutUrl: "https://checkout.escalepay.com/1969028" },
+            { id: 8, title: "VENDAS NA INTERNET O Guia Definitivo para Dominar as Vendas", priceOld: "130,00", priceNew: "196,00", discount: "-50% OFF", image: "71.jpeg", checkoutUrl: "https://checkout.escalepay.com/9530180" },
+            { id: 9, title: "DO NAMORO AO CASAMENTO: Construindo um Amor Duradouro sobre os Princípios da Palavra de Deus", priceOld: "380,00", priceNew: "298,00", discount: "-55% OFF", image: "87.jpeg", checkoutUrl: "https://checkout.escalepay.com/4879037" },
+            { id: 10, title: "MENTALIDADE DE CRESCIMENTO: Como Enxergar Oportunidades Onde Todos Veem Crise", priceOld: "321,00", priceNew: "189,00", discount: "-50% OFF", image: "77.jpeg", checkoutUrl: "https://checkout.escalepay.com/8645354" },
+            { id: 11, title: "MARKETING DIGITAL DO ZERO: O Passo a Passo para Vender Diariamente", priceOld: "145,00", priceNew: "249,00", discount: "-51% OFF", image: "34.jpeg", checkoutUrl: "https://checkout.escalepay.com/9412288" },
+            { id: 12, title: "COPYWRITING QUE CONVERTE: Textos Persuasivos para Vendas", priceOld: "150,00", priceNew: "224,00", discount: "-50% OFF", image: "79.jpeg", checkoutUrl: "https://checkout.escalepay.com/5282503" },
+            { id: 13, title: "APRENDA A LUCRAR COM INTELIGENCIA ARTIFICIAL: Como Usar a IA para Criar Novas Fontes de Renda, Automatizar Processos e Escalar Seus Ganhos", priceOld: "340,00", priceNew: "269,00", discount: "-50% OFF", image: "78.jpeg", checkoutUrl: "https://checkout.escalepay.com/5574926" },
+            { id: 14, title: "EMPREENDEDORISMO DIGITAL: Da Ideia ao Primeiro Milhão", priceOld: "245,00", priceNew: "198,00", discount: "-55% OFF", image: "74.jpeg", checkoutUrl: "https://checkout.escalepay.com/5590112" },
+            { id: 15, title: "ESTRATÉGIAS DE NEGOCIAÇÃO: Ferramentas e Técnicas Comprovadas para Negociar com Confiança", priceOld: "320", priceNew: "234,00", discount: "-50% OFF", image: "72.jpeg", checkoutUrl: "https://checkout.escalepay.com/6345424" },
+            { id: 16, title: "MENTE MILIONÁRIA: A Ciência Oculta da Atração Financeira", priceOld: "230,00", priceNew: "199,00", discount: "-49% OFF", image: "7.jpeg", checkoutUrl: "https://checkout.escalepay.com/3146705" },
+            { id: 17, title: "RECEITAS DE CONFEITARIA : Descubra Segredos, Técnicas e Sabores que Vão Encantar Qualquer Paladar. ", priceOld: "321,00", priceNew: "256,00", discount: "-50% OFF", image: "HH.jpeg", checkoutUrl: "https://checkout.escalepay.com/9121352" },
+            { id: 18, title: "PELE LISA: Como Ter uma pele deslubrante ", priceOld: "320,00", priceNew: "198,00", discount: "-54% OFF", image: "57.jpeg", checkoutUrl: "https://checkout.escalepay.com/1071780" },
+            { id: 19, title: "O FIM DO SILENCIO: Rompendo as Correntes da Dependência Emocional", priceOld: "340,00", priceNew: "187,00", discount: "-58% OFF", image: "25.jpeg", checkoutUrl: "https://checkout.escalepay.com/3208437" },
+            { id: 20, title: "O PREÇO DO SILENCIO: Como Identificar e Romper o Ciclo da Violência Psicológica e Física", priceOld: "231,00", priceNew: "193,00", discount: "-50% OFF", image: "26.jpeg", checkoutUrl: "https://checkout.escalepay.com/2317486" },
+            { id: 21, title: "O MILAGRE DENTRO DE MIM: A Jornada Sagrada da Maternidade e a Conexão que Muda tudo", priceOld: "398,00", priceNew: "324,00", discount: "-54% OFF", image: "20.jpeg", checkoutUrl: "https://checkout.escalepay.com/9812909" },
+            { id: 22, title: "O ALGORITMO DA RIQUEZA: Os princípios imutáveis que separam quem apenas trabalha de quem constrói um legado", priceOld: "340,00", priceNew: "279,00", discount: "-54% OFF", image: "44.jpeg", checkoutUrl: "https://checkout.escalepay.com/1470612" },
+            { id: 23, title: "MENTE RICA, BOLSO CHEIO: Como Reprogramar Seu Cérebro para Multiplicar Seu Dinheiro", priceOld: "389,00", priceNew: "298,00", discount: "-50% OFF", image: "48.jpeg", checkoutUrl: "https://checkout.escalepay.com/3477071" },
+            { id: 24, title: "NAMORO CRISTÃO: Construindo um relacionamento com base na Palavra de Deus.", priceOld: "349,00", priceNew: "289,00", discount: "-52% OFF", image: "43.jpeg", checkoutUrl: "https://checkout.escalepay.com/5355198" },
+            { id: 25, title: "DOIS CAMINHOS, UM DESTINO (INFERNO OU PARAISO): Entendendo a jornada da fé e a Vida eterna em DEUS", priceOld: "250", priceNew: "198,00", discount: "-48% OFF", image: "56.jpeg", checkoutUrl: "https://checkout.escalepay.com/7115231" },
+            { id: 26, title: "O RESGATE DA ALMA: O plano divino de redenção revelado nas Escrituras.", priceOld: "250,00", priceNew: "149,00", discount: "-53% OFF", image: "28.jpeg", checkoutUrl: "https://checkout.escalepay.com/2645051" },
+            { id: 27, title: "DEVOCIONAL: Como blindar sua mente e o seu coração através da Palavra de Deus", priceOld: "221,00", priceNew: "196,00", discount: "-55% OFF", image: "41.jpeg", checkoutUrl: "https://checkout.escalepay.com/1586576" },
+            { id: 28, title: "ARQUITETURA DA RIQUEZA: Leis Imutáveis para Atrair, Reter e Multiplicar Dinheiro", priceOld: "350,00", priceNew: "298,00", discount: "-50% OFF", image: "655.jpg", checkoutUrl: "https://checkout.escalepay.com/8950170" },
+            { id: 29, title: "+ DE 150 RECEITAS PARA EMAGRECIMENTO: Cardápios Estratégicos e Fáceis de Preparar para Perder Peso Sem Complicação.", priceOld: "299,00", priceNew: "199,00", discount: "-55% OFF", image: "999.jpeg", checkoutUrl: "https://ratixpay.co.mz/checkout.html?produto=4OJ217QMT" },
+            { id: 30, title: "DIABETES SEM COMPLICAÇÕES: O método prático para simplificar sua rotina, entender seus sinais e manter a glicemia estável sem viver em constante estado de alerta.", priceOld: "235,00", priceNew: "169,00", discount: "-50% OFF", image: "511.jpeg", checkoutUrl: "https://ratixpay.co.mz/checkout.html?produto=XINPIOB7Z" },
+            { id: 31, title: "TÉCNICAS PARA PREPARAÇÃO DOS EXAMES DE ADMISSÃO (UEM, UP etc...)", priceOld: "350,00", priceNew: "198,00", discount: "-50% OFF", image: "exames.jpg", checkoutUrl: "https://ratixpay.co.mz/checkout.html?produto=U19LPGKMN" },
+            { id: 32, title: "ESTRATÉGIAS DE VENDAS: Descubra os Gatilhos Mentais e as Abordagens Definitivas para Conquistar a Confiança e Fechar Vendas.", priceOld: "331,00", priceNew: "297,00", discount: "-53% OFF", image: "32.jpeg", checkoutUrl: "https://checkout.escalepay.com/2780433" },
+            { id: 33, title: "O MÉTODO PRÁTICO PARA CUIDAR DO CABELO: O Guia Definitivo para Fios Saudáveis, Brilhantes e Cheios de Vida", priceOld: "349,00", priceNew: "224,00", discount: "-54% OFF", image: "90.jpeg", checkoutUrl: "https://checkout.escalepay.com/4169512" },
+            { id: 34, title: "A FORÇA DA MULHER: Descubra sua força interior, resgate sua autoestima e assuma o protagonismo da sua vida.", priceOld: "356,00", priceNew: "289,00", discount: "-51% OFF", image: "98.jpeg", checkoutUrl: "https://checkout.escalepay.com/1630281" },
+            { id: 35, title: "A UNÇÃO DIVINA: Compreendendo a essência, o propósito e a responsabilidade da unção divina.", priceOld: "400,00", priceNew: "324,00", discount: "-54% OFF", image: "42.jpeg", checkoutUrl: "https://checkout.escalepay.com/2722217" },
+            { id: 36, title: "O CASAMENTO DOS SONHOS: O Guia Definitivo de Planejamento Passo a Passo", priceOld: "359", priceNew: "224", discount: "-52% OFF", image: "80.jpeg", checkoutUrl: "https://checkout.escalepay.com/7076459" },
+            { id: 37, title: "MENTE SOB CONTROLE: O Manual da Engenharia Mental", priceOld: "342,00", priceNew: "198,00", discount: "-52% OFF", image: "6.jpeg", checkoutUrl: "https://checkout.escalepay.com/5702347" },
+            { id: 38, title: "SUPERAÇÃO DE TRAUMAS, Culpa e Crenças Limitantes Extremas", priceOld: "220,00", priceNew: "187,00", discount: "-51% OFF", image: "16.jpeg", checkoutUrl: "https://checkout.escalepay.com/9931047" },
+            { id: 39, title: "NETWORKING ESTRATÉGICO: Como Construir uma Rede de Contatos Valiosa", priceOld: "345,00", priceNew: "198,00", discount: "-54% OFF", image: "7p.jpeg", checkoutUrl: "https://checkout.escalepay.com/8612969" },
+            { id: 40, title: "NEGOCIO NO DIGITAL: Como Construir uma Fonte de Renda Escalável Vendendo E-books", priceOld: "350,00", priceNew: "287,00", discount: "-53% OFF", image: "58.jpeg", checkoutUrl: "https://checkout.escalepay.com/2679977" },
+            { id: 41, title: "O DNA da Liderança de Alto Impacto: Guia Prático", priceOld: "369,00", priceNew: "324,00", discount: "-53% OFF", image: "70.jpeg", checkoutUrl: "https://checkout.escalepay.com/5162024" },
+            { id: 42, title: "RAZÃO & CORAÇÃO: O Guia Prático para Alinhar a Mente e os Sentimentos", priceOld: "345,00", priceNew: "199,00", discount: "-54% OFF", image: "47.jpeg", checkoutUrl: "https://checkout.escalepay.com/4623925" },
+            { id: 43, title: "AS CORDAS INVISIVEIS: Por Que Você Sabota o Seu Próprio Sucesso?", priceOld: "250,00", priceNew: "189,00", discount: "-50% OFF", image: "15.jpeg", checkoutUrl: "https://checkout.escalepay.com/4528509" },
+            { id: 44, title: "CONEXÃO INABALÁVEL: Como Blindar Seu Relacionamento Contra Crises e Distanciamento", priceOld: "349,00", priceNew: "198,00", discount: "-51% OFF", image: "36.jpeg", checkoutUrl: "https://checkout.escalepay.com/3411730" },
+            { id: 45, title: "O REFÚGIO DO AMOR: Como Resgatar a Conexão Oculta no Casamento", priceOld: "340,00", priceNew: "289,00", discount: "-55% OFF", image: "13.jpeg", checkoutUrl: "https://checkout.escalepay.com/8318088" },
+            { id: 46, title: "ORATÓRIA PODEROSA: Como Falar em Público", priceOld: "450,00", priceNew: "278,00", discount: "-53% OFF", image: "66.jpeg", checkoutUrl: "https://checkout.escalepay.com/1969028" },
+            { id: 47, title: "O EFEITO MANADA: Como Escapar do Caminho Comum e Construir a Verdadeira Riqueza", priceOld: "345,00", priceNew: "298,00", discount: "-51% OFF", image: "31.jpeg", checkoutUrl: "https://checkout.escalepay.com/6364156" },
+            { id: 48, title: "ROMPENDO O SILENCIO: Como se Libertar do Abuso Psicológico", priceOld: "321,00", priceNew: "196,00", discount: "-53% OFF", image: "12.jpeg", checkoutUrl: "https://checkout.escalepay.com/7560368" },
+            { id: 49, title: "CURANDO SUAS RAIZES: O Resgate da Criança Interior", priceOld: "245,00", priceNew: "189,00", discount: "-50% OFF", image: "11.jpeg", checkoutUrl: "https://checkout.escalepay.com/8200432" },
+            { id: 50, title: "+DE 300 IDEIAS DE NEGOCIO: Como transformar uma ideia em uma empresa lucrativa e estruturada desde o primeiro dia", priceOld: "349,00", priceNew: "298,00", discount: "-54% OFF", image: "fe.jpeg", checkoutUrl: "https://checkout.escalepay.com/3755719" }
+        ];
+
+        // Função para injetar os 50 e-books dinamicamente no DOM com seus respectivos links
+        function renderEbooks() {
+            const grid = document.getElementById('ebookGrid');
+            grid.innerHTML = ebooks.map(book => `
+                <div class="ebook-card">
+                    <div class="discount-badge">${book.discount}</div>
+                    <div class="ebook-image-container">
+                        <img src="${book.image}" alt="${book.title}" loading="lazy">
+                    </div>
+                    <div class="ebook-content">
+                        <h3 class="ebook-title">${book.title}</h3>
+                        <div class="stars">★★★★★</div>
+                        <div class="pricing">
+                            <div class="old-price">${book.priceOld} Mtn</div>
+                            <div class="current-price">${book.priceNew} Mtn</div>
+                        </div>
+                        <a href="${book.checkoutUrl}" target="_blank" class="buy-btn">Adquirir Livro</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Função do formulário de suporte
+        function enviarSuporte(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            alert(`Obrigado, ${nome}! A sua mensagem foi enviada com sucesso para a nossa equipa de suporte. Responderemos em breve.`);
+            event.target.reset();
+        }
+
+        // Temporizador regressivo simulado de 30 minutos na barra superior
+        let tempoRestante = 30 * 60; // 30 minutos em segundos
+        const timerElement = document.getElementById('scarcity-timer');
+
+        setInterval(() => {
+            if (tempoRestante > 0) {
+                tempoRestante--;
+                let minutos = Math.floor(tempoRestante / 60);
+                let segundos = tempoRestante % 60;
+                minutos = minutos < 10 ? '0' + minutos : minutos;
+                segundos = segundos < 10 ? '0' + segundos : segundos;
+                timerElement.innerHTML = `⚠️ ATENÇÃO: Descontos especiais expiram em: ${minutos}:${segundos}`;
+            }
+        }, 1000);
+
+        // Inicializar a renderização ao carregar a página
+        window.onload = renderEbooks;
+    </script></body></html>
